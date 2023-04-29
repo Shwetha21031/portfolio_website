@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Quote Generator</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Stylesheet -->
+  <style media="screen">
+  * {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+}
+body {
+background-color: #aed7eb;
+}
+.wrapper {
+width: 400px;
+position: absolute;
+transform: translate(-50%, -50%);
+top: 50%;
+left: 50%;
+}
+.wrapper h2{
+  text-align: center;
+  margin: 0px 30px 50px 0px;
+  background: white;
+  padding: 10px;
+  width: 100%;
+  color: rgb(3, 64, 153);
+}
+.container {
+width: 100%;
+background-color: #ffffff;
+padding: 50px 30px;
+box-shadow: 0 20px 65px rgba(87, 11, 16, 0.3);
+position: relative;
+border-radius: 5px;
+text-align: center;
+}
+
+.display{
+   box-shadow: 0 0 20px rgba(0,139,253,0.25);
+   padding: 10px;
+   border: 1px solid rgba(9, 82, 158, 0.29);
+}
+.container p {
+color: #142350;
+line-height: 2;
+font-size: 19px;
+}
+.container h3 {
+color: #570c9d;
+margin: 35px 0 10px 35%;
+font-weight: 600;
+text-transform: capitalize;
+}
+.container h3::before{
+  content: "- ";
+  color: rgb(12, 94, 210);
+}
+.container button {
+background-color: #17203d;
+border: none;
+padding: 15px 45px;
+border-radius: 5px;
+margin-top: 40px;
+font-size: 18px;
+font-weight: 600;
+color: #ffffff;
+cursor: pointer;
+}
+  </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2>Random Quote Generator</h2>
+      <div class="container">
+        <div class="display">
+        <p id="quote">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas,
+          magni.
+        </p>
+        <h3 id="author">Lorem, ipsum.</h3>
+      </div>
+        <button id="btn">Get Quote</button>
+      </div>
+    </div>
+    <!-- Script -->
+    <script type="text/javascript">
+    let quote = document.getElementById("quote");
+    let author = document.getElementById("author");
+    let btn = document.getElementById("btn");
+
+    const url = "https://api.quotable.io/random";
+
+    let getQuote = () => {
+      fetch(url)
+        .then((data) => data.json())
+        .then((item) => {
+          quote.innerText = item.content;
+          author.innerText = item.author;
+        });
+    };
+
+    window.addEventListener("load", getQuote);
+    btn.addEventListener("click", getQuote);
+    </script>
+  </body>
+</html>
